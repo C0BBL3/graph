@@ -36,7 +36,7 @@ class Tree:
                 queue.append(child)
         if len(queue) > 0:
             for i in range(0, max_num + 1):
-                queue.remove(queue[0])
+                queue = queue[:1]
             return self.print_breadth_first(queue)
 
     #helper functions
