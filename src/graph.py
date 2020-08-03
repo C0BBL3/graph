@@ -20,7 +20,6 @@ class Graph:
             self.nodes[x].set_neighbor(self.nodes[y]) 
 
     def remove_duplicate_edges(self, edges):
-        print('edges', edges)
         corrected_edges = []
         for edge in edges:
             if edge not in corrected_edges:
