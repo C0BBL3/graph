@@ -1,0 +1,3 @@
+language = "bash"
+run = "python tests/test_graph.py"
+#run = "python tests/test_node.py"
