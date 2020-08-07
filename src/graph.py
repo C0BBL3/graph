@@ -45,3 +45,23 @@ class Graph:
                 self.depth_first_search(node.index, visited_nodes)
 
         return [node.index for node in visited_nodes]
+
+    def breadth_first_search(self, index):
+        visited_nodes = []
+        queue = [self.nodes[index]]
+
+        while len(visited_nodes) < len(self.nodes):
+
+            for neighbor in queue[0].neighbors:
+                queue.append(neighbor)
+
+            if queue[0] not in visited_nodes:
+                visited_nodes.append(queue[0])
+
+            queue.remove(queue[0])
+
+        return [node.index for node in visited_nodes]
+
+
+
+

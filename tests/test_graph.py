@@ -20,4 +20,7 @@ assert [len(node.neighbors) for node in graph.nodes] == [1, 4, 1, 2, 2], "the no
 print('    Depth First Search:', graph.depth_first_search(0))
 assert graph.depth_first_search(0) == [0, 1, 2, 3, 4], "the search's values in graph are wrong and should be [0, 1, 2, 3, 4] but was {}".format(graph.depth_first_search(0))
 
+print('    Breath First Search:', graph.breadth_first_search(1))
+assert graph.breadth_first_search(1) == [1, 0, 2, 3, 4], "the search's values in graph are wrong and should be [0, 1, 2, 3, 4] but was {}".format(graph.breadth_first_search(1))
+
 print('All Tests PASS!!!')
