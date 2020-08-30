@@ -52,7 +52,7 @@ class Tree:
             self.set_children(node, edges)
 
     def set_root(self, edges):
-        [parents, children] = self.set_parent_and_child_lists()
+        [parents, children] = self.set_parent_and_child_lists(edges)
         for i in parents:
             if i not in children:
                 self.root = Node(i)
@@ -72,7 +72,7 @@ class Tree:
 
         return children
 
-    def set_parent_and_child_lists(self):
+    def set_parent_and_child_lists(self, edges):
         parents = []
         children = []
         for arr in edges:
