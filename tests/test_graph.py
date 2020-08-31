@@ -23,20 +23,20 @@ assert graph.depth_first_search(0) == [0, 1, 2, 3, 4], "the search's values in g
 print('\n    Breath First Search:', graph.breadth_first_search(1))
 assert graph.breadth_first_search(1) == [1, 0, 2, 3, 4], "the search's values in graph are wrong and should be [0, 1, 2, 3, 4] but was {}".format(graph.breadth_first_search(1))
 
-print('\n    Find Distance Tests:')
+print('\n    Find Distance tests...')
 edges = [(0, 1), (1, 2), (1, 3), (3, 4), (1, 4), (4, 5)]
 vertices = ['a', 'b', 'c', 'd', 'e', 'f']
 graph = Graph(edges, vertices)
-print('        graph.find_distance(0, 4):', graph.find_distance(0, 4))  #2
-assert graph.find_distance(0, 4) == 2, "The find_distance() should be 2, but was {}".format(graph.find_distance(0, 4))
-print('        graph.find_distance(5, 2):', graph.find_distance(5, 2))  # 3
-assert graph.find_distance(5, 2) == 3, "The find_distance() should be 3, but was {}".format(graph.find_distance(5, 2))
-print('        graph.find_distance(0, 5):', graph.find_distance(0, 5))  # 3
-assert graph.find_distance(0, 5) == 3, "The find_distance() should be 3, but was {}".format(graph.find_distance(0, 5))
-print('        graph.find_distance(4, 1):', graph.find_distance(4, 1))  # 1
-assert graph.find_distance(4, 1) == 1, "The find_distance() should be 1, but was {}".format(graph.find_distance(4, 1))
-print('        graph.find_distance(3, 3):', graph.find_distance(3, 3))  # 0
-assert graph.find_distance(3, 3) == 0, "The find_distance() should be 0, but was {}".format(graph.find_distance(3, 3))
+print('\n        Find Distance (0, 4):', graph.find_distance(0, 4))  # 2
+assert graph.find_distance(0, 4) == 2, "find_distance() should be 2, but was {}".format(graph.find_distance(0, 4))
+print('        Find Distance (5, 2):', graph.find_distance(5, 2))  # 3
+assert graph.find_distance(5, 2) == 3, "find_distance() should be 3, but was {}".format(graph.find_distance(5, 2))
+print('        Find Distance (0, 5):', graph.find_distance(0, 5))  # 3
+assert graph.find_distance(0, 5) == 3, "find_distance() should be 3, but was {}".format(graph.find_distance(0, 5))
+print('        Find Distance (4, 1):', graph.find_distance(4, 1))  # 1
+assert graph.find_distance(4, 1) == 1, "find_distance() should be 1, but was {}".format(graph.find_distance(4, 1))
+print('        Find Distance (3, 3):', graph.find_distance(3, 3))  # 0
+assert graph.find_distance(3, 3) == 0, "find_distance() should be 0, but was {}".format(graph.find_distance(3, 3))
 print('\n    Find Distance Tests PASS!!!')
 
 

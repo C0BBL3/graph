@@ -47,43 +47,36 @@ class Graph:
         return [node.index for node in visited_nodes]
 
     def breadth_first_search(self, index, index_2=None, return_distance=False):
-        distance, visited_nodes, queue = 0, [], [self.nodes[index]]
-
-        if return_distance and index == index_2:
-            return 0
+        visited_nodes, queue = [], [self.nodes[index]]
 
         while len(visited_nodes) < len(self.nodes):
-            
+
             for neighbor in queue[0].neighbors:
                 queue.append(neighbor)
-
-            
 
             if queue[0] not in visited_nodes:
                 visited_nodes.append(queue[0].index)
 
             queue.remove(queue[0])
 
-            distance += 1
-
-            if return_distance == True:
-
-                if self.nodes[index_2] in queue:
-                    return distance
-
         return visited_nodes
 
     def find_distance(self, node_1_index, node_2_index):
-        return_1_2 = self.breadth_first_search(node_1_index, index_2=node_2_index, return_distance=True)
-        print(return_1_2)
-        return_2_1 = self.breadth_first_search(node_2_index, index_2=node_1_index, return_distance=True)
-        print(return_2_1)
-        if return_1_2 < return_2_1:
-            return return_1_2
-        else:
-            return return_2_1
+        generation_number, current_generation_nodes, previous_generation_nodes = 0, [], [
+            self.nodes[node_1_index]]
 
+        if node_1_index == node_2_index:
+            return 0
 
+        while True:
+            generation_number += 1
+            for node in previous_generation_nodes:
+                for neighbor in node.neighbors:
+                    current_generation_nodes.append(neighbor)
 
+            if self.nodes[node_2_index] in current_generation_nodes:
+                return generation_number
 
+            previous_generation_nodes = current_generation_nodes
+            current_generation_nodes = []
 
