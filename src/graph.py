@@ -10,8 +10,7 @@ class Graph:
     def make_nodes(self):
         uncorrected_edges = [i for edge in self.edges for i in edge]
 
-        corrected_edges = self.remove_duplicate_edges(
-            uncorrected_edges)  # no more duplicates
+        corrected_edges = self.remove_duplicate_edges(uncorrected_edges)  # no more duplicates
 
         # make the nodes (but without values or neighbors)
         self.nodes = [Node(i) for i in corrected_edges]
@@ -46,7 +45,7 @@ class Graph:
 
         return [node.index for node in visited_nodes]
 
-    def breadth_first_search(self, index, index_2=None, return_distance=False):
+    def breadth_first_search(self, index, index_2=None):
         visited_nodes, queue = [], [self.nodes[index]]
 
         while len(visited_nodes) < len(self.nodes):
@@ -61,22 +60,33 @@ class Graph:
 
         return visited_nodes
 
-    def find_distance(self, node_1_index, node_2_index):
-        generation_number, current_generation_nodes, previous_generation_nodes = 0, [], [
-            self.nodes[node_1_index]]
-
+    def calc_distance(self, node_1_index, node_2_index):
+        generation_number, current_generation_nodes, visited_nodes, previous_generation_nodes = 0, [], [self.nodes[node_1_index]], [self.nodes[node_1_index]]
         if node_1_index == node_2_index:
             return 0
-
         while True:
             generation_number += 1
             for node in previous_generation_nodes:
                 for neighbor in node.neighbors:
+                    if neighbor not in visited_nodes:
+                        neighbor.previous = node
+                    visited_nodes.append(neighbor)
                     current_generation_nodes.append(neighbor)
-
             if self.nodes[node_2_index] in current_generation_nodes:
                 return generation_number
 
+            
             previous_generation_nodes = current_generation_nodes
             current_generation_nodes = []
 
+    def calc_shortest_path(self, node_1_index, node_2_index):
+        distance, shortest_path, current_node = self.calc_distance(node_1_index, node_2_index), [self.nodes[node_2_index].index], self.nodes[node_2_index]
+        while len(shortest_path) < distance + 1:
+            if current_node.previous != None:
+                shortest_path.append(current_node.previous.index)
+                current_node = current_node.previous
+        for node in self.nodes: node.previous = None #reset all the previous attributes so no error for next tests
+        return shortest_path[::-1]
+            
+
+        
