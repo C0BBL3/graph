@@ -10,7 +10,7 @@ class Tree:
 
         while len(layer_nodes) > 0:
             next_layer_nodes = self.get_children_of_layer(layer_nodes)
-            self.set_children_of_layer(next_layer_nodes)
+            self.set_children_of_layer(next_layer_nodes, edges)
             layer_nodes = next_layer_nodes
 
     def print_depth_first(self, node):#must run an initialization function before this (append or build_from_edges)
@@ -40,7 +40,7 @@ class Tree:
             return self.print_breadth_first(queue)
 
     #helper functions
-    def get_children_of_layer(self, layer_nodes, edges):
+    def get_children_of_layer(self, layer_nodes):
         children_of_layer_nodes = []
         for parent in layer_nodes:
             for child in parent.children:
