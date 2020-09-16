@@ -64,7 +64,9 @@ class Directed_Graph:
         return visited_nodes
 
     def calc_distance(self, node_1_index, node_2_index):
-        generation_number, current_generation_nodes, visited_nodes, previous_generation_nodes = 0, [], [self.nodes[node_1_index]], [self.nodes[node_1_index]]
+        generation_number, current_generation_nodes = 0, []
+        visited_nodes = [self.nodes[node_1_index]]
+        previous_generation_nodes = [self.nodes[node_1_index]]
         if node_1_index == node_2_index:
             return 0
         while generation_number < len(self.nodes):
@@ -82,7 +84,9 @@ class Directed_Graph:
         return False
 
     def calc_shortest_path(self, node_1_index, node_2_index):
-        distance, shortest_path, current_node = self.calc_distance(node_1_index, node_2_index), [self.nodes[node_2_index].index], self.nodes[node_2_index]
+        distance,  = self.calc_distance(node_1_index, node_2_index)
+        shortest_path = [self.nodes[node_2_index].index]
+        current_node = self.nodes[node_2_index]
         if node_1_index == node_2_index:
             return False
         while len(shortest_path) < distance + 1:
