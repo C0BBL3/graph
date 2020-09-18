@@ -84,18 +84,16 @@ class Directed_Graph:
         return False
 
     def calc_shortest_path(self, node_1_index, node_2_index):
-        distance,  = self.calc_distance(node_1_index, node_2_index)
+        distance = self.calc_distance(node_1_index, node_2_index)
         shortest_path = [self.nodes[node_2_index].index]
         current_node = self.nodes[node_2_index]
-        if node_1_index == node_2_index:
-            return False
+        if node_1_index == node_2_index: return False
         while len(shortest_path) < distance + 1:
             if current_node.previous != None:
                 if current_node.previous in current_node.parents:
                     shortest_path.append(current_node.previous.index)
                     current_node = current_node.previous
-                else:
-                    return False
+                else: return False
         for node in self.nodes: node.previous = None #reset all the previous attributes so no error for next tests
         return shortest_path[::-1]
             
