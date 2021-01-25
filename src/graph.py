@@ -1,6 +1,3 @@
-from node import Node
-
-
 class Graph:
     def __init__(self, edges, vertices):
         self.edges = edges
@@ -87,6 +84,21 @@ class Graph:
                 current_node = current_node.previous
         for node in self.nodes: node.previous = None #reset all the previous attributes so no error for next tests
         return shortest_path[::-1]
+
+class Node:
+    def __init__(self, index):
+        self.index = index
+        self.value = None
+        self.neighbors = []
+        self.parent = None
+
+    def set_value(self, value):
+        self.value = value
+
+    def set_neighbor(self, neighbor):
+        self.neighbors.append(neighbor)
+        neighbor.neighbors.append(self)
+
             
 
         
